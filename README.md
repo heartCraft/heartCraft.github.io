@@ -10,6 +10,6 @@
 ##DI的装配方式：
 * 自动化装配
   * 组件扫描:
-    * `@Component`
-    * `@ComponentScan`
+    * `@Component`：value属性可指定beanID，默认为类名首字母小写
+    * `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）
   * 自动装配:`@Autowired`
