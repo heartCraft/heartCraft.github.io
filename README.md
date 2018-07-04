@@ -9,5 +9,7 @@
 
 ##DI的装配方式：
 * 自动化装配
-  * 组件扫描:`@Component,@ComponentScan`
-  * 自动装配
+  * 组件扫描:
+   * `@Component`
+   * `@ComponentScan`
+  * 自动装配:`@Autowired`
