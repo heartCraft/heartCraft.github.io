@@ -1,17 +1,35 @@
 # Spring学习总结记录
 
-## 依赖注入（dependency injection,DI）,又名控制反转（Inversion of Control,IOC） 
-要解决的问题：**解耦**
+## 控制反转（Inversion of Control,IOC） 
 
-核心：Spring容器
-* 如何发现待注入类，如何将容器中的类注入
-* bean的声明周期
+### 分为依赖注入（dependency injection,DI），依赖查找（depandency lookup,DL）两部分
+* DI：被动接受其依赖的其他组件被IOC容器注入
+* DL：主动在IOC容器中查找其需要的组件
 
-##DI的装配方式：
+### IOC容器完成两部分功能：收集与注册，分析与组装
+* 收集与注册（bean发现）：将bean收集到IOC容器
+* 分析与组装：分析bean的依赖关系，依次组装
+
+### 收集与注册的实现方式：
+* XML
+* Java
+* 注解+扫描
+
+### 分析与组装实现方式
+* XML
+* Java
+* 注解
+
+## DI的装配方式：
 * 自动化装配
   * 组件扫描:
     * `@Component`：value属性可指定beanID，默认为类名首字母小写
     * `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）
   * 自动装配:
     * `@Autowired`：required属性；自动装配的歧义性
+    
+   
+核心：Spring容器
+* 如何发现待注入类，如何将容器中的类注入
+* bean的声明周期
 
