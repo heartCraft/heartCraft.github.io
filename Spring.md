@@ -10,23 +10,21 @@
 * 收集与注册（bean发现）：将bean收集到IOC容器
 * 分析与组装：分析bean的依赖关系，依次组装
 
-### 收集与注册的实现方式：
+### 实现方式
+* JavaConfig
 * XML
-* Java
-* 注解+扫描
-
-### 分析与组装实现方式
-* XML
-* Java
-* 注解
+* 基于JavaConfig或XML的自动化扫描与装配
 
 ## DI的装配方式：
 * 自动化装配
   * 组件扫描:
     * `@Component`：value属性可指定beanID，默认为类名首字母小写
-    * `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）
+    * `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）（配置类需指定@Configuration）
   * 自动装配:
     * `@Autowired`：required属性；自动装配的歧义性
+* java代码显式装配
+  * `@Configuration`：声明配置类
+  * `@Bean`：声明bean对象，name属性指定beanId，默认方法名
     
    
 核心：Spring容器
