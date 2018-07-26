@@ -1,3 +1,3 @@
 # Spring学习总结记录
 
-* [IOC](IOC.md)
+* [控制反转：IOC](IOC.md)
