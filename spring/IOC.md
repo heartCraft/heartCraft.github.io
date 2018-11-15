@@ -108,15 +108,7 @@ public class Patient {
 打开扫描功能方式：
 * 在JavaConfig文件上标注@ComponentScan注解
 * 在XML文件中使用<context:component-scan base-package="base package name"/>
-
-
-## DI的装配方式：
-* 自动化装配
-  
-* java代码显式装配
-  
     
-   
-核心：Spring容器
+## 核心：Spring容器
 * 如何发现待注入类，如何将容器中的类注入
 * bean的声明周期
