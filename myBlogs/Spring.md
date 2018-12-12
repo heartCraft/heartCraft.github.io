@@ -1,19 +1,27 @@
-# 控制反转（IOC：Inversion of Control） 
+# Spring学习总结记录
+
+
+
+## 控制反转（IOC：Inversion of Control） 
 
 ### 控制反转实为依赖注入（DI：dependency injection），依赖查找（DL：depandency lookup）
-* DI：被动接受其依赖的其他组件被IOC容器注入
-* DL：主动在IOC容器中查找其需要的组件
+
+- DI：被动接受其依赖的其他组件被IOC容器注入
+- DL：主动在IOC容器中查找其需要的组件
 
 ## 实现方式
-* JavaConfig
-* XML
-* 基于JavaConfig或XML的自动化扫描与装配
+
+- JavaConfig
+- XML
+- 基于JavaConfig或XML的自动化扫描与装配
 
 ### JavaConfig
-* `@Configuration`：声明配置类
-* `@Bean`：声明bean对象，name属性指定beanId，默认方法名
-* `@Import`:引入其他javaConfig文件
-* `@ImportResources`:引入其他XML配置的bean
+
+- `@Configuration`：声明配置类
+- `@Bean`：声明bean对象，name属性指定beanId，默认方法名
+- `@Import`:引入其他javaConfig文件
+- `@ImportResources`:引入其他XML配置的bean
+
 ```java
 @Configuration
 public class Config {
@@ -39,6 +47,7 @@ public class Config {
 ```
 
 ### XML
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -67,9 +76,11 @@ public class Config {
 ```
 
 ### 基于JavaConfig或XML的自动化扫描与装配
-* `@Component`：value属性可指定beanID，默认为类名首字母小写
-* `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）（配置类需指定@Configuration）
-* `@Autowired`：required属性；自动装配的歧义性
+
+- `@Component`：value属性可指定beanID，默认为类名首字母小写
+- `@ComponentScan`：默认只扫描此注解同package下的类，value属性可指定扫描package，另有basePackages（可配置多个扫描package）和basePackageClasses（可配置多个类，这些类所在的package下所有类均会被扫描）（配置类需指定@Configuration）
+- `@Autowired`：required属性；自动装配的歧义性
+
 ```java
 @Component
 public class Doctor {
@@ -85,6 +96,7 @@ public class Doctor {
     }
 }
 ```
+
 ```java
 @Component
 public class Patient {
@@ -105,10 +117,13 @@ public class Patient {
     }
 }
 ```
+
 打开扫描功能方式：
-* 在JavaConfig文件上标注@ComponentScan注解
-* 在XML文件中使用<context:component-scan base-package="base package name"/>
-    
+
+- 在JavaConfig文件上标注@ComponentScan注解
+- 在XML文件中使用<context:component-scan base-package="base package name"/>
+
 ## 核心：Spring容器
-* 如何发现待注入类，如何将容器中的类注入
-* bean的声明周期
+
+- 如何发现待注入类，如何将容器中的类注入
+- bean的声明周期

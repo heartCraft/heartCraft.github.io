@@ -1,12 +1,10 @@
 ## 拙笔
-* [Tomcat](tomcat/index.md)
-
-* [Servlet](servlet/index.md)
-
+* [JVM](myBlogs/JVM.md)
+* [java类加载](myBlogs/Java类加载机制.md)
+* [Tomcat](myBlogs/tomcat.md)
+* [Servlet](myBlogs/Servlet.md)
+* [Spring](myBlogs/Spring.md)
+* [Java并发编程](myBlogs/Java并发.md)
 * [Star Blog](starBlogs/index.md)
 
-* [Spring](spring/index.md)
-
-* [Concurrency](concurrency/index.md)
-
-![](enjoy_life.jpg)
+![](images/enjoy_life.jpg)
