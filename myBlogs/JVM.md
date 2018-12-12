@@ -38,19 +38,45 @@ https://blog.csdn.net/qq_26222859/article/details/73135660
 
 
 
-### gc算法
+### 如何判断对象已死需要回收？
 
-| gc算法                            | 使用场景           |
+​	根搜索算法（可达性分析算法）
+
+​	引用计数法（会存在循环引用问题，不适用）
+
+
+
+### 垃圾回收算法
+
+​	标记-清除算法
+
+​	复制算法
+
+​	标记-整理算法
+
+​	分代收集算法
+
+
+
+### 垃圾回收器
+
+| 垃圾回收器                        | 使用场景           |
 | --------------------------------- | ------------------ |
 | serial+serial old                 | client 模式        |
 | parNew + CMS + serial old         | service模式        |
 | parallel Scanvange + parallel old | 提高吞吐量，对响应 |
 | G1                                | 对CMS的upgrade     |
 
-* java内存模型
-* 类加载过程
+
+
 * JVM 新生代与老年代默认比例为1:2， **–XX:NewRatio**设置年老代与年轻代大小的比值
 * JVM中年轻代中Eden与两个Survivor默认比例为8:1:1，**-XX:SurvivorRatio**设置Eden与一个Survivor区大小的比值。
 * -Xms -Xmx -Xmn -Xss 
 * -XX:PermSize -XX:MaxPermSize 
 * -XX:MetaspaceSize -XX:MaxMetaspaceSize
+
+TODO
+
+G1算法的具体实现&调优参数
+
+JVM故障定位与性能分析：heap dump与thread dump
