@@ -1,4 +1,4 @@
-# JAVA内存模型（JMM）
+## JAVA内存模型（JMM）
 
 所有线程共享的变量都储存在主内存中（可类比为物理硬件的主内存）
 
@@ -12,7 +12,7 @@
 
 
 
-## 8种原子内存操作
+### 8种原子内存操作
 
 JMM定义了8种原子内存操作：
 
@@ -27,7 +27,7 @@ JMM定义了8种原子内存操作：
 
 
 
-## 原子性
+### 原子性
 
 当多个原子操作组合在一起时，不能保证其原子性。
 
@@ -46,7 +46,7 @@ a++;
 
 
 
-## 有序性
+### 有序性
 
 在保障单线程的最终结果一致的前提下，实际执行时会进行优化，即指令重排序。
 
@@ -77,7 +77,7 @@ class A{
 
 
 
-## 可见性
+### 可见性
 
 变量的写操作，不会实时更新到主内存；变量的读操作，也不会实时从主内存中读取。当并发线程有共享变量时，需要额外的手段保证共享变量的可见性。
 
@@ -90,7 +90,7 @@ class A{
 
 
 
-## happens-before原则
+### happens-before原则
 
 JMM定义的一些两项操作之间的偏序关系，实际上是可见性保证规则：
 
@@ -109,16 +109,16 @@ JMM定义的一些两项操作之间的偏序关系，实际上是可见性保�
 
 
 
-# 保障并发安全
+## 保障并发安全
 
-## 避免共享内存，保障并发安全
+### 避免共享内存，保障并发安全
 
 - 只依赖于方法参数与局部变量。
 - 线程本地存储，使用threadLocal类实现。
 
 
 
-## volatile
+### volatile
 
 - 保障volatile变量可见性，以及根据volatile Variable Rule保障其他共享变量可见性。
 - 限制指令重排序
@@ -131,7 +131,7 @@ DCL单例实现时，依赖与volatile变量限制指令重排序。
 
 
 
-## synchronized
+### synchronized
 
 互斥同步方式避免原子性与有序性问题，锁对象与Monitor Lock Rule保障可见性。
 	
@@ -162,7 +162,7 @@ class A{
 
 
 
-## ReentrantLock
+### ReentrantLock
 
 实现的功能与synchronized一致，但是比synchronized更灵活。
 
@@ -189,7 +189,7 @@ ReentrantLock相比synchronized优点：
 
 
 
-## ReentrantReadWriteLock
+### ReentrantReadWriteLock
 
 允许多个读操作并发进行；写操作时，读操作与其他写操作等待。
 
@@ -223,13 +223,13 @@ class MyList{
 
 
 
-# 线程协作
+## 线程协作
 
 当条件未满足时，让线程等待；条件满足后，线程被唤醒继续执行。
 
 
 
-## synchronized
+### synchronized
 
 ```java
 Queue<String> queue = new LinkedList<>();
@@ -267,7 +267,7 @@ new Thread(() -> {
 
 
 
-## Lock接口的实现类
+### Lock接口的实现类
 
 ```java
 Queue<String> queue = new LinkedList<>();
@@ -311,7 +311,7 @@ new Thread(() -> {
 
 
 
-## CountDownLatch
+### CountDownLatch
 
 ```java
 CountDownLatch latch = new CountDownLatch(5);
@@ -331,7 +331,7 @@ try {
 
 
 
-## Semaphore
+### Semaphore
 
 ```java
 Semaphore semaphore = new Semaphore(5);
@@ -352,7 +352,7 @@ new Thread(() -> {
 
 
 
-## CyclicBarrier
+### CyclicBarrier
 
 ```java
 CyclicBarrier cyclicBarrier = new CyclicBarrier(4);
@@ -376,13 +376,13 @@ for (int index = 0; index < 4; index++) {
 
 
 
-## Phaser
+### Phaser
 
 提供比CyclicBarrier功能更丰富的线程同步工具类。
 
 
 
-## Exchanger
+### Exchanger
 
 ```
 Exchanger exchanger = new Exchanger();
@@ -414,13 +414,13 @@ new Thread(() -> {
 
 
 
-## FutureTask
+### FutureTask
 
 get方法会阻塞当前线程，等待FutureTask运行完毕后，唤醒当前线程，拿到执行结果。
 
 
 
-## AQS（AbstractQueuedSynchronizer）
+### AQS（AbstractQueuedSynchronizer）
 
 Lock的实现类，CountDownLatch，Semaphore，CyclicBarrier都是基于AQS实现的。我们可以基于AQS实现自己的同步工具类。
 
@@ -428,60 +428,60 @@ AQS中维护了一个volatile int表示资源量，一个线程等待队列。�
 
 
 
-# 并发安全容器
+## 并发安全容器
 
-## Collections.synchronizedList(List<T> list)
+### Collections.synchronizedList(List<T> list)
 
 包装模式，将非线程安全的list每个操作方法在包装类中用synchronized加锁实现并发安全。
 
-## CopyOnWriteArrayList
+### CopyOnWriteArrayList
 
 写时复制。读线程共享，每个写线程在本线程独有的拷贝上完成写入。
 
-## CopyOnWriteArraySet
+### CopyOnWriteArraySet
 
 基于CopyOnWriteArrayList实现。
 
-## ConcurrentSkipListSet
+### ConcurrentSkipListSet
 
 跳表实现的并发安全有序Set
 
-## ConcurrentHashMap
+### ConcurrentHashMap
 
 分段锁实现的细粒度加锁，提升并发性能。
 
-## ConcurrentSkipListMap
+### ConcurrentSkipListMap
 
 跳表实现的并发安全有序Map
 
-## ConcurrentLinkedQueue
+### ConcurrentLinkedQueue
 
 非阻塞方式实现的基于链表的无界线程安全队列，性能很好
 
-## ArrayBlockingQueue
+### ArrayBlockingQueue
 
 基于数组实现的有界阻塞队列
 
-## LinkedBlockingQueue
+### LinkedBlockingQueue
 
 基于链表实现的有界阻塞队列
 
-## PriorityBlockingQueue
+### PriorityBlockingQueue
 
 非阻塞方式实现的基于链表的无界线程安全队列，性能很好
 
-## DelayQueue
+### DelayQueue
 
 延时获取元素的无界阻塞队列
 
-## SynchronousQueue
+### SynchronousQueue
 
 此队列不存储任何元素，每个put操作必须
 
-## ArrayDeque
+### ArrayDeque
 
 基于数组的双向非阻塞队列
 
-## LinkedBlockingDeque
+### LinkedBlockingDeque
 
 基于链表的双向阻塞队列
