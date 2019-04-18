@@ -1,6 +1,5 @@
 # JAVA内存模型（JMM）
 
-```
 所有线程共享的变量都储存在主内存中（可类比为物理硬件的主内存）
 
 每个线程有自己的工作内存（可类比为物理硬件的CPU高速缓存）
@@ -8,7 +7,6 @@
 工作内存中保存了该线程使用到的变量的主内存副本拷贝。
 
 线程对变量的所有操作都必须对工作内存进行，不能直接操作主内存。
-```
 
 ![](images/JMM.jpg)
 
@@ -109,12 +107,16 @@ JMM定义的一些两项操作之间的偏序关系，实际上是可见性保�
 
 同一个锁对象，先执行的synchronized代码块中对共享变量的操作，对后执行的synchronized代码块可见。
 
+
+
 # 保障并发安全
 
 ## 避免共享内存，保障并发安全
 
 - 只依赖于方法参数与局部变量。
 - 线程本地存储，使用threadLocal类实现。
+
+
 
 ## volatile
 
@@ -126,6 +128,8 @@ JMM定义的一些两项操作之间的偏序关系，实际上是可见性保�
 JUC下的同步工具类，都依赖于volatile Variable Rule保障其他共享变量的可见性。
 
 DCL单例实现时，依赖与volatile变量限制指令重排序。
+
+
 
 ## synchronized
 
@@ -156,6 +160,8 @@ class A{
 }
 ```
 
+
+
 ## ReentrantLock
 
 实现的功能与synchronized一致，但是比synchronized更灵活。
@@ -180,6 +186,8 @@ ReentrantLock相比synchronized优点：
 - synchronized是非公平锁，ReentrantLock可选择公平或不公平锁。
 - 提供lockInterruptibly()方法，等待获取锁可中断
 - synchronized只能支持单条件协作，ReentrantLock可以创建多个条件。
+
+
 
 ## ReentrantReadWriteLock
 
@@ -213,9 +221,13 @@ class MyList{
 }
 ```
 
+
+
 # 线程协作
 
 当条件未满足时，让线程等待；条件满足后，线程被唤醒继续执行。
+
+
 
 ## synchronized
 
@@ -252,6 +264,8 @@ new Thread(() -> {
     }
 }).start();
 ```
+
+
 
 ## Lock接口的实现类
 
@@ -295,6 +309,8 @@ new Thread(() -> {
 }).start();
 ```
 
+
+
 ## CountDownLatch
 
 ```java
@@ -312,6 +328,8 @@ try {
     e.printStackTrace();
 }
 ```
+
+
 
 ## Semaphore
 
@@ -331,6 +349,8 @@ new Thread(() -> {
     }
 }).start();
 ```
+
+
 
 ## CyclicBarrier
 
@@ -353,6 +373,8 @@ for (int index = 0; index < 4; index++) {
     }).start();
 }
 ```
+
+
 
 ## Phaser
 
@@ -390,15 +412,21 @@ new Thread(() -> {
 }).start();
 ```
 
+
+
 ## FutureTask
 
 get方法会阻塞当前线程，等待FutureTask运行完毕后，唤醒当前线程，拿到执行结果。
+
+
 
 ## AQS（AbstractQueuedSynchronizer）
 
 Lock的实现类，CountDownLatch，Semaphore，CyclicBarrier都是基于AQS实现的。我们可以基于AQS实现自己的同步工具类。
 
 AQS中维护了一个volatile int表示资源量，一个线程等待队列。当资源不满足时，将线程放入等待队列并休眠；资源条件改变后，唤醒等待线程重新尝试获取资源。
+
+
 
 # 并发安全容器
 
