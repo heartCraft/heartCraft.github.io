@@ -106,9 +106,9 @@ JMM定义的一些两项操作之间的偏序关系，实际上是可见性保�
 以Monitor Lock Rule为例，通俗一点的解释是：
 
 同一个锁对象，先执行的synchronized代码块中对共享变量的操作，对后执行的synchronized代码块可见。
-	
-	
-	
+
+
+
 # 保障并发安全
 
 ## 避免共享内存，保障并发安全
@@ -220,9 +220,9 @@ class MyList{
     }
 }
 ```
-  
-  
-  
+
+
+
 # 线程协作
 
 当条件未满足时，让线程等待；条件满足后，线程被唤醒继续执行。
@@ -425,9 +425,9 @@ get方法会阻塞当前线程，等待FutureTask运行完毕后，唤醒当前�
 Lock的实现类，CountDownLatch，Semaphore，CyclicBarrier都是基于AQS实现的。我们可以基于AQS实现自己的同步工具类。
 
 AQS中维护了一个volatile int表示资源量，一个线程等待队列。当资源不满足时，将线程放入等待队列并休眠；资源条件改变后，唤醒等待线程重新尝试获取资源。
-  
-  
-  
+
+
+
 # 并发安全容器
 
 ## Collections.synchronizedList(List<T> list)
