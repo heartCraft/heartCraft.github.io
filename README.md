@@ -8,6 +8,3 @@
 * [排序算法](myBlogs/排序算法.md)
 * [红黑树](myBlogs/红黑树.md)
 * [Star Blog](starBlogs/index.md)
-
-![](images/enjoy_life.jpg)
-=======
