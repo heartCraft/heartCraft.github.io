@@ -264,7 +264,7 @@ new Thread(() -> {
             customCondition.await();
         }
         String s = queue.poll();
-        productCondition.notifyAll();
+        productCondition.signalAll();
     } catch (InterruptedException e) {
         e.printStackTrace();
     } finally {
@@ -280,7 +280,7 @@ new Thread(() -> {
             productCondition.await();
         }
         queue.offer("");
-        customCondition.notifyAll();
+        customCondition.signalAll();
     } catch (InterruptedException e) {
         e.printStackTrace();
     } finally {
